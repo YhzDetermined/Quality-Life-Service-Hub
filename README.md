@@ -1,6 +1,8 @@
 # 生活优选服务平台
   该项目是一款智能化生活服务平台，支持用户点评与商品采购快送，采用前后端分离架构，本仓库中是后端项目。平台功能涵盖商品快送、优惠券秒杀、好物分享、好友关注、粉丝推送等。
 相比于市面上普遍的点评项目，本项目将消息队列由**Redis stream** 改造成 **RabbitMQ**,采用了更专业的消息队列
+## 技术栈
+Java, SpringBoot，MyBatisPlus, MySQL, Redis, Redisson, RabbitMQ, Nginx
 ## 业务介绍
 ### 1. 优惠券秒杀
 技术实现：Lua脚本 + Redisson 分布式锁
