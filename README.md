@@ -14,12 +14,12 @@ Java, SpringBoot，MyBatisPlus, MySQL, Redis, Redisson, RabbitMQ, Nginx
 之后执行完Lua脚本后，将消息投递到消息队列中异步更新MySQL并创建订单
 
 #### 消息队列方案
-1. 采用Redis Stream实现消息队列方案
+1. 采用**Redis Stream**实现消息队列方案
 创建线程池，选择一个线程做消费者异步消费订单信息，创建订单成功后确认消息
 在 Redis Stream 中，使用消费者组（Consumer Group）消费消息时，Redis 会自动维护一个 Pending Entries List（简称 pending-list），它记录了：某个消费者已经读取但尚未确认（ACK）的消息；处理死信队列中的消息继续创建订单
 
-2. 采用RabbitMQ实现消息队列
-采用手动ACK的方法，如果创建订单的过程抛异常，不断重试，（重试设置时间间隔）如果3次重试失败投递到死信队列中
+2. 采用**RabbitMQ**实现消息队列
+采用手动ACK的方法，如果创建订单的过程抛异常，不断重试，（重试设置时间间隔）如果3次重试失败投递到死信交换机的死信队列中
 
 #### 后续创建订单
 ##### 技术实现 Redisson分布式锁： 一人一单和防止库存超卖
