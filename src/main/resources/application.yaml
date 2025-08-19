@@ -20,6 +20,19 @@ spring:
         time-between-eviction-runs: 10s
   jackson:
     default-property-inclusion: non_null # JSON处理时忽略非空字段
+  rabbitmq:
+    host: 127.0.0.1        # RabbitMQ 主机
+    port: 5672              # 默认端口
+    username: guest         # 用户名（生产建议改成自己的账号）
+    password: guest         # 密码
+    virtual-host: /         # 虚拟主机
+    # 消费者相关配置
+    listener:
+      simple:
+        acknowledge-mode: manual         # 消费者手动 ack
+        prefetch: 1                # 一次消费一条消息，保证公平分发
+
+
 mybatis-plus:
   type-aliases-package: com.hmdp.entity # 别名扫描包
 logging:
